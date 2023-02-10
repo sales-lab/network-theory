@@ -2,6 +2,7 @@ FROM ubuntu:18.04
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends python3-pip jupyter-notebook \
+      libgomp1 \
  && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache snap-stanford
