@@ -1,7 +1,7 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN apt-get update \
- && apt-get install -y python3 python3-pip ipython3-notebook \
+ && apt-get install -y --no-install-recommends python3-pip jupyter-notebook \
  && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache snap-stanford
@@ -17,7 +17,6 @@ RUN adduser --disabled-password \
     --uid ${NB_UID} \
     ${NB_USER}
 
-# Make sure the contents of our repo are in ${HOME}
 COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
