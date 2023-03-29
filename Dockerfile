@@ -6,7 +6,7 @@ RUN apt-get update \
       python3-sklearn \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --no-cache snap-stanford
+RUN pip3 install --no-cache networkx snap-stanford
 
 ARG NB_USER=jovyan
 ARG NB_UID=1001
