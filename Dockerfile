@@ -1,10 +1,16 @@
 FROM ubuntu:18.04
 
+ARG DEBIAN_FRONTEND=noninteractive
+
+COPY scripts/checkupdates /sbin/checkupdates
+
 RUN apt-get update \
+ && apt-get dist-upgrade -y \
  && apt-get install -y --no-install-recommends python3-pip jupyter-notebook \
       libgomp1 curl python3-numpy python3-matplotlib python3-tqdm \
       python3-sklearn \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && chmod 0755 /sbin/checkupdates
 
 RUN pip3 install --no-cache networkx snap-stanford
 
